@@ -1,7 +1,8 @@
 {
   "name": "moviezio-worker",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
+  "repository": "https://github.com/sabarasaba/moviezio-worker",
   "description": "Worker for moviez.io",
   "scripts": {
     "start": "babel-node index.js",
