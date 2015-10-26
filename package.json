@@ -1,14 +1,13 @@
 {
-  "name": "worker",
+  "name": "moviezio-worker",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha tests/*.spec.js --compilers js:babel/register"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ignacio Rivas",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
     "jsonfile": "^2.2.3",
