@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import Xray from 'x-ray';
-import { sanitizeTitle } from '../utils/helpers';
+import { sanitizeTitle, sanitizeSize, movieQuality } from '../utils/helpers';
 import * as Consts from '../consts';
 
 const x = Xray();
@@ -30,7 +30,9 @@ export function Process() {
           return _.get(e, 'movie.name', false);
         })
         .map(function(e) {
+          e.movie.metadata.type = movieQuality(e.movie.name);
           e.movie.name = _.startCase(sanitizeTitle(e.movie.name));
+          e.movie.metadata.size = sanitizeSize(e.movie.metadata.size);
 
           return e;
         })
