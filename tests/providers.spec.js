@@ -1,13 +1,50 @@
-// Import chai.
-import chai from 'chai';
-// import path from 'path';
+import Providers from '../providers';
+import { expect } from 'chai';
 
-chai.should();
 
-describe('Describes something', () => {
-  it('should pass', () => {
-    const n = 10;
+describe('Providers', () => {
 
-    n.should.equal(10);
+  describe('PirateBay', () => {
+    let data;
+
+    before((done) => {
+      Providers.PirateBay.Process().then((fetched) => {
+        data = fetched;
+      }).catch(err => {
+        data = undefined;
+      }).then(() => {
+        done();
+      });
+    });
+
+    it('should have gotten data from provider', () => {
+      expect(data).to.not.be.undefined;
+    });
+
+    it('should have gotten data from provider', () => {
+      expect(data.length).to.be.above(0);
+    });
+  });
+
+  describe('1337x', () => {
+    let data;
+
+    before((done) => {
+      Providers.LeetX.Process().then((fetched) => {
+        data = fetched;
+      }).catch(err => {
+        data = undefined;
+      }).then(() => {
+        done();
+      });
+    });
+
+    it('should have gotten data from provider', () => {
+      expect(data).to.not.be.undefined;
+    });
+
+    it('should have gotten data from provider', () => {
+      expect(data.length).to.be.above(0);
+    });
   });
 });
