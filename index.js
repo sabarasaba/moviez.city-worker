@@ -11,7 +11,7 @@ Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((va
       console.log(err);
     }
 
-    console.log(chalk.green('Done'));
+    console.log(`${Chalk.green('Done')} - ${data.length} movies fetched`);
   });
 }).catch(err => {
   console.log(Chalk.red('Error while scraping data from providers'));
