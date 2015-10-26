@@ -11,6 +11,7 @@ cache:
 
 before_install:
   - "npm install -g babel"
+  - "npm install -g mocha"
 
 install:
   - npm install
