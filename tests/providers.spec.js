@@ -17,7 +17,7 @@ describe('Providers', () => {
       });
     });
 
-    it('should have gotten data from provider', () => {
+    it('shouldnt have failed', () => {
       expect(data).to.not.be.undefined;
     });
 
@@ -39,7 +39,7 @@ describe('Providers', () => {
       });
     });
 
-    it('should have gotten data from provider', () => {
+    it('shouldnt have failed', () => {
       expect(data).to.not.be.undefined;
     });
 
