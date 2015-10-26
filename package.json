@@ -2,6 +2,7 @@
   "name": "moviezio-worker",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "Worker for moviez.io",
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha tests/*.spec.js --compilers js:babel/register"
