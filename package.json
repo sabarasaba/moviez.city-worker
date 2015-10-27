@@ -11,6 +11,7 @@
   "author": "Ignacio Rivas",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.0.0",
     "chalk": "^1.1.1",
     "jsonfile": "^2.2.3",
     "lodash": "^3.10.1",

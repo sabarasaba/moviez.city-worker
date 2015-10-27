@@ -8,11 +8,13 @@ const tmdbAPI = MovieDB(key);
 let getTmdbData = function(name) {
   return new Promise((resolve, reject) => {
     tmdbAPI.searchMovie({query: name }, (err, res) => {
-      if (err) {
+      const movieId = _.get(res, 'results[0].id', undefined);
+
+      if (err || _.isUndefined(movieId)) {
         reject(err);
       }
 
-      tmdbAPI.movieInfo({id: res.results[0].id}, (err, res) => {
+      tmdbAPI.movieInfo({id: movieId}, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -39,9 +41,9 @@ let getOmdbData = function(name) {
   });
 };
 
-export function FetchFor(title) {
+export function FetchFor(movie) {
   return new Promise((resolve, reject) => {
-    Promise.all([getTmdbData(title), getOmdbData(title)]).then((values) => {
+    Promise.all([getTmdbData(movie.movie.name), getOmdbData(movie.movie.name)]).then((values) => {
       const dataTmdb = _.pick(values[0],
         'id',
         'imdb_id',
@@ -55,7 +57,7 @@ export function FetchFor(title) {
         'genres'
       );
 
-      const dataOmdb = _.pick(values[1],
+      const dataOmdb = _.pick(values[0],
         'rated',
         'director',
         'actors',
@@ -65,11 +67,14 @@ export function FetchFor(title) {
         'metacritic'
       );
 
-      const data = _.extend({}, dataTmdb, dataOmdb);
+      movie.movie.meta = _.extend({}, dataTmdb, dataOmdb);
 
-      resolve(data);
+      setTimeout(() => {
+        resolve(movie);
+      }, 10000);
     }).catch(err => {
-      reject(err);
+      console.log(err);
+      resolve(movie);
     });
   });
 };
