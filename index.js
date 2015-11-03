@@ -14,6 +14,7 @@ Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((va
     .filter((el) => {
       return !_.isUndefined(el.movie.meta);
     })
+    .map(Youtube.FetchFor)
     .then((movies) => {
       JsonFile.writeFile('./data/bulk.json', movies, {spaces: 2}, function(err) {
         if (err) {

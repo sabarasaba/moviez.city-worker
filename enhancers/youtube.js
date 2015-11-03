@@ -22,9 +22,11 @@ let getYoutubeResults = function(name) {
 export function FetchFor(movie) {
   return new Promise((resolve, reject) => {
     getYoutubeResults(`${movie.movie.name} trailer`).then((data) => {
-      resolve(`https://www.youtube.com/watch?v=${_.get(data, 'items[0].id.videoId', 'M1djO19aSFQ')}`);
+      movie.movie.meta.trailer = `https://www.youtube.com/watch?v=${_.get(data, 'items[0].id.videoId', 'M1djO19aSFQ')}`
+
+      resolve(movie);
     }).catch(err => {
-      resolve('');
+      resolve(movie);
     });
   });
 };
