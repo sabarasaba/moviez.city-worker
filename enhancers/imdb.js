@@ -2,9 +2,9 @@ import MovieDB from 'moviedb';
 import omdb from 'omdb';
 import Chalk from 'chalk';
 import _ from 'lodash';
+import * as Consts from '../utils/consts';
 
-const key = 'a48a3410482bc3874beb15185259a498';
-const tmdbAPI = MovieDB(key);
+const tmdbAPI = MovieDB(Consts.TMDB_KEY);
 
 let getTmdbData = function(name) {
   return new Promise((resolve, reject) => {

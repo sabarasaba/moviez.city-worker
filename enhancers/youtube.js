@@ -1,10 +1,9 @@
 import Youtube from 'youtube-node';
 import _ from 'lodash';
-
-const key = 'AIzaSyBBmqAzH3YVm8C1G2aWWMMoiKRWotaowqM';
+import * as Consts from '../utils/consts';
 
 const youtube = new Youtube();
-youtube.setKey(key);
+youtube.setKey(Consts.YOUTUBE_KEY);
 
 let getYoutubeResults = function(name) {
   return new Promise((resolve, reject) => {
