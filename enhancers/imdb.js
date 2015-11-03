@@ -1,5 +1,6 @@
 import MovieDB from 'moviedb';
 import omdb from 'omdb';
+import Chalk from 'chalk';
 import _ from 'lodash';
 
 const key = 'a48a3410482bc3874beb15185259a498';
@@ -33,7 +34,7 @@ let getOmdbData = function(name) {
       }
 
       if(!movie) {
-        reject('Movie not found');
+        reject(name);
       }
 
       resolve(movie);
@@ -73,8 +74,11 @@ export function FetchFor(movie) {
         resolve(movie);
       }, 10000);
     }).catch(err => {
-      console.log(err);
-      resolve(movie);
+      setTimeout(() => {
+        console.log(`${Chalk.red('Error:')} no metadata for ${err}`);
+
+        resolve(movie);
+      }, 10000);
     });
   });
 };
