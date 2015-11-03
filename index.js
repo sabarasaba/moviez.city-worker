@@ -1,10 +1,12 @@
-import Providers from './providers';
-import * as Imdb from './enhancers/imdb';
-import * as Youtube from './enhancers/youtube';
 import JsonFile from 'jsonfile';
 import Chalk from 'chalk';
 import Bluebird from 'bluebird';
 import _ from 'lodash';
+
+import Providers from './providers';
+import * as Imdb from './enhancers/imdb';
+import * as Youtube from './enhancers/youtube';
+
 
 
 Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((values) => {

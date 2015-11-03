@@ -2,6 +2,7 @@ import MovieDB from 'moviedb';
 import omdb from 'omdb';
 import Chalk from 'chalk';
 import _ from 'lodash';
+
 import * as Consts from '../utils/consts';
 
 const tmdbAPI = MovieDB(Consts.TMDB_KEY);

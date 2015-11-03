@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Xray from 'x-ray';
+
 import { sanitizeTitle, sanitizeSize, movieQuality } from '../utils/helpers';
 import * as Consts from '../utils/consts';
 
