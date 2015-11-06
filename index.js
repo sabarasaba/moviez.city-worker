@@ -4,6 +4,7 @@ import Bluebird from 'bluebird';
 import _ from 'lodash';
 
 import Providers from './providers';
+import * as Store from './utils/store';
 import * as Imdb from './enhancers/imdb';
 import * as Youtube from './enhancers/youtube';
 
@@ -11,11 +12,12 @@ import * as Youtube from './enhancers/youtube';
 Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((values) => {
   const data = [].concat.apply([], values);
 
-  Bluebird.map(data, Imdb.FetchFor, {concurrency: 10})
+  Bluebird.map(data, Imdb.fetchFor, {concurrency: 10})
     .filter((el) => {
       return !_.isUndefined(el.movie.meta);
     })
-    .map(Youtube.FetchFor)
+    .map(Youtube.fetchFor)
+    .map(Store.saveMovie)
     .then((movies) => {
       JsonFile.writeFile('./data/bulk.json', movies, {spaces: 2}, function(err) {
         if (err) {

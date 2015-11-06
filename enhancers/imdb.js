@@ -43,11 +43,10 @@ let getOmdbData = function(name) {
   });
 };
 
-export function FetchFor(movie) {
+export function fetchFor(movie) {
   return new Promise((resolve, reject) => {
     Promise.all([getTmdbData(movie.movie.name), getOmdbData(movie.movie.name)]).then((values) => {
       const dataTmdb = _.pick(values[0],
-        'id',
         'imdb_id',
         'title',
         'backdrop_path',
@@ -70,6 +69,23 @@ export function FetchFor(movie) {
       );
 
       movie.movie.meta = _.extend({}, dataTmdb, dataOmdb);
+
+      // Remap genres to categories
+      movie.movie.meta.Categories = _.map(movie.movie.meta.genres, (e) => {
+        return {
+          name: e.name
+        };
+      });
+
+      //Capitalize Actors field
+      movie.movie.meta.Actors = _.map(movie.movie.meta.actors, (e) => {
+        return {
+          name: e
+        };
+      });
+
+      delete movie.movie.meta.genres;
+      delete movie.movie.meta.actors;
 
       setTimeout(() => {
         resolve(movie);
