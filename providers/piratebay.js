@@ -16,7 +16,7 @@ export function Process() {
           size: 'td:nth-child(2) font',
           seeders: 'td:nth-child(3)',
           leechers: 'td:nth-child(4)',
-          magnet: 'td:nth-child(2) > a@href',
+          magnet: 'td:nth-child(2) > a@href'
         })
       })
     }])(function(err, data) {
@@ -25,14 +25,13 @@ export function Process() {
       }
 
       const result = _.chain(data)
-        .filter((e) => {
+        .filter(function(e) {
           return _.get(e, 'movie.name', false);
         })
-        .map((e) => {
-          e.movie.metadata.type = movieQuality(e.movie.name);
+        .map(function(e) {
+          e.movie.download.type = movieQuality(e.movie.name);
           e.movie.name = _.startCase(sanitizeTitle(e.movie.name));
-          e.movie.metadata.size = sanitizeSize(e.movie.metadata.size);
-          e.movie.metadata
+          e.movie.download.size = sanitizeSize(e.movie.download.size);
 
           return e;
         })

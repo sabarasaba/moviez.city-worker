@@ -8,7 +8,6 @@ import * as Imdb from './enhancers/imdb';
 import * as Youtube from './enhancers/youtube';
 
 
-
 Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((values) => {
   const data = [].concat.apply([], values);
 

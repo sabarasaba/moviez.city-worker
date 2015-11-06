@@ -16,7 +16,7 @@ export function Process() {
           type: ' .list:nth-child(1) li:nth-child(2) span',
           size: '.list:nth-child(1) li:nth-child(4) span',
           seeders: '.list:nth-child(2) .green',
-          leechers: '.list:nth-child(2) .red',
+          leechers: '.list:nth-child(2) .red'
         }),
         links: x('.download-links', {
           magnet: '.magnet@href'
