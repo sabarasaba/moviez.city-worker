@@ -59,7 +59,7 @@ export function FetchFor(movie) {
         'genres'
       );
 
-      const dataOmdb = _.pick(values[0],
+      const dataOmdb = _.pick(values[1],
         'rated',
         'director',
         'actors',
