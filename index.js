@@ -7,6 +7,7 @@ import Providers from './providers';
 import * as Store from './utils/store';
 import * as Imdb from './enhancers/imdb';
 import * as Youtube from './enhancers/youtube';
+import * as Slug from './enhancers/slug';
 
 
 Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((values) => {
@@ -14,9 +15,12 @@ Promise.all([Providers.LeetX.Process(), Providers.PirateBay.Process()]).then((va
 
   Bluebird.map(data, Imdb.fetchFor, {concurrency: 10})
     .filter((el) => {
-      return !_.isUndefined(el.movie.meta);
+      const hasAllMeta = _.get(el.movie, 'meta.rated', null);
+
+      return !_.isUndefined(el.movie.meta) && !_.isNull(hasAllMeta);
     })
     .map(Youtube.fetchFor)
+    .map(Slug.store)
     .map(Store.saveMovie)
     .then((movies) => {
       JsonFile.writeFile('./data/bulk.json', movies, {spaces: 2}, function(err) {
