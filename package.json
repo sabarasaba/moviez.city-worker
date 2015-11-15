@@ -1,9 +1,9 @@
 {
-  "name": "moviezio-worker",
-  "version": "0.0.1",
+  "name": "moviez.city-worker",
+  "version": "0.0.3",
   "main": "index.js",
-  "repository": "https://github.com/sabarasaba/moviezio-worker",
-  "description": "Worker for moviez.io",
+  "repository": "https://github.com/sabarasaba/moviez.city-worker",
+  "description": "Worker for moviez.city",
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha tests/*.spec.js --compilers js:babel/register"
