@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sabarasaba/moviez.city-worker.svg)](https://travis-ci.org/sabarasaba/moviez.city-worker)
 
-> This project provides a worker that crawls trending movies from 1337x.com and piratebay, dedupes them, remove low scores and low seeds and aggregates the movies metadata from tmdb and bulks the information in a postgres database.
+> This project provides a worker that crawls trending movies from 1337x.com and piratebay, dedupes them, remove low scores and low seeds and aggregates the movies metadata from tmdb, trailer from youtube and bulks the information in a postgres database.
 
 ### Getting Started
 
