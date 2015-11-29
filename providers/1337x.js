@@ -29,7 +29,7 @@ export function Process() {
 
       const result = _.chain(data)
         .filter((e) => {
-          const seeders = _.get(e, 'movie.metadata.seeders', false);
+          const seeders = _.get(e, 'movie.download.seeders', false);
 
           return parseInt(seeders, 10) > 100;
         })
